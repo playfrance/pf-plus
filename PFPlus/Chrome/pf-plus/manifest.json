@@ -1,0 +1,39 @@
+{
+    "name": "PlayFrance Plus (PF+)",
+	"short_name": "pf-plus",
+	"author": "PF Plus Team",
+    "version": "0.4.0",
+    "manifest_version": 2,
+    "description": "PlayFrance is better now",
+	"options_page": "data/options.html",
+	"icons": {
+      "128": "data/shared/img/icon128.png",
+      "16": "data/shared/img/icon16.png",
+      "48": "data/shared/img/icon48.png"
+	},
+	"background": {
+      "persistent": false,
+      "scripts": [ "data/background.js" ]
+	},
+    "content_scripts": [{
+        "matches": [
+			"http://forum.playfrance.com/*",
+			"http://forum.xboxfrance.com/*",
+			"http://forum.wiidsfrance.com/*",
+			"http://forum.pcactu.com/*"
+		],
+        "js": [
+			"data/shared/scripts/jquery-2.1.0.min.js",
+			"data/shared/scripts/URI-1.12.0.min.js",
+			"data/shared/scripts/jquery.URI-1.12.0.min.js",
+			"data/shared/scripts/jquery.lazyload-1.9.3.min.js",
+			"data/init.js",
+			"data/shared/common.js"
+		]
+    }],
+	"web_accessible_resources": [
+		"data/shared/css/styles.css",
+		"data/shared/img/logo.png",
+		"data/shared/img/spacer.gif"
+	]
+}

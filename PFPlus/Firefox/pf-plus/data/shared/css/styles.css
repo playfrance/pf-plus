@@ -1,0 +1,22 @@
+.pf-plus-context-menu {
+	width: 200px;
+	position: absolute;
+	display: none;
+	top: 0;
+	left: 0;
+	z-index: 1002;
+	background-color: white;
+	border: 1px solid darkgrey;
+	line-height: 13px;
+	font-family: Arial,sans-serif;
+	font-size: 13px;
+	box-shadow: rgba(0, 0, 0, 0.5) 3px 3px 3px;
+}
+.pf-plus-context-menu a {
+	display: block;
+	padding:8px 10px;
+	color: black;
+}
+.pf-plus-context-menu a:hover {
+	background-color: #EEEEEE;
+}

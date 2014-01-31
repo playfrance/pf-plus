@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>PlayFrance Plus Options</title>
+		<script src="shared/scripts/jquery-2.1.0.min.js"></script>
+		<script src="options.js"></script>
+	</head>
+	<body>
+		<div>
+			<img src="shared/img/icon48.png" /> <b>Options de PlayFrance Plus :</b><br><br>
+			<input type="checkbox" name="displayNewLogo"><label for="displayNewLogo">Afficher le logo personnalis&eacute;</label><br />
+			<input type="checkbox" name="displayUniqueTheme"><label for="displayUniqueTheme">Activer le th&egrave;me unique (ALPHA)</label><br />
+			<select name="selectedUniqueTheme">
+				<option value="sony" selected="selected">Sony (Bleu fonc&eacute;)</option>
+				<option value="microsoft">Microsoft (Vert)</option>
+				<option value="nintendo">Nintendo (Bleu clair)</option>
+				<option value="pc">PC (Violet)</option>
+			</select><br />
+			<input type="checkbox" name="removeSignatures"><label for="removeSignatures">Masquer les signatures des membres</label><br />
+			<input type="checkbox" name="fixMaxWidthImg"><label for="fixMaxWidthImg">Fixer le probl&egrave;me de largeur d'images (pour &eacute;viter l'apparition d'une scrollbar horizontale)</label><br />
+			<input type="checkbox" name="addTopButtons"><label for="addTopButtons">Ajouter un bouton &laquo; Haut de page &raquo; sur chaque post d'un topic</label><br />
+			<input type="checkbox" name="fastQuote"><label for="fastQuote">Activer la citation rapide (au clic droit)</label><br />
+			<input type="checkbox" name="displayYoutube"><label for="displayYoutube">Afficher les vid&eacute;os Youtube</label><br />
+			<input type="checkbox" name="displayDailymotion"><label for="displayDailymotion">Afficher les vid&eacute;os Dailymotion</label><br />
+			<input type="checkbox" name="displayTwitter"><label for="displayTwitter">Afficher les Tweet</label><br />
+			<input type="checkbox" name="lazyLoadingOnImg"><label for="lazyLoadingOnImg">Activer le lazy loading</label>
+		</div>
+		
+		<div id="status"></div>
+		
+		<div>
+			<button id="save">Enregistrer</button>
+		</div>
+	</body>
+</html>

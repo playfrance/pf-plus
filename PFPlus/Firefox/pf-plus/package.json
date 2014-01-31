@@ -1,0 +1,98 @@
+{
+	"title": "PlayFrance Plus (PF+)",
+	"name": "pf-plus",
+	"id": "jid1-HdPD9nQmu4ZrEw",
+	"description": "PlayFrance is better now",
+	"author": "PF Plus Team",
+	"contributors": ["Steven_PF", "UniT_I_ReSpAwN"],
+	"license": "MPL 2.0",
+	"version": "0.4.0",
+	"icon": "data\\shared\\img\\icon48.png",
+	"icon64": "data\\shared\\img\\icon64.png",
+	"preferences": [
+		{
+			"name": "displayNewLogo",
+			"title": "Afficher le logo personnalisé",
+			"type": "bool",
+			"value": true
+		},
+		{
+			"name": "displayUniqueTheme",
+			"title": "Activer le thème unique (ALPHA)",
+			"type": "bool",
+			"value": false
+		},
+		{
+			"name": "selectedUniqueTheme",
+			"title": "Choix du thème",
+			"type": "menulist",
+			"value": "sony",
+			"options": [
+				{
+					"value": "sony",
+					"label": "Sony"
+				},
+				{
+					"value": "microsoft",
+					"label": "Microsoft"
+				},
+				{
+					"value": "nintendo",
+					"label": "Nintendo"
+				},
+				{
+					"value": "pc",
+					"label": "PC"
+				}
+			]
+		},
+		{
+			"name": "removeSignatures",
+			"title": "Masquer les signatures des membres",
+			"type": "bool",
+			"value": true
+		},
+		{
+			"name": "fixMaxWidthImg",
+			"title": "Fixer le problème de largeur d'images (pour éviter l'apparition d'une scrollbar horizontale)",
+			"type": "bool",
+			"value": true
+		},
+		{
+			"name": "addTopButtons",
+			"title": "Ajouter un bouton \\ Haut de page \\ sur chaque post d'un topic",
+			"type": "bool",
+			"value": true
+		},
+		{
+			"name": "fastQuote",
+			"title": "Activer la citation rapide (au clic droit)",
+			"type": "bool",
+			"value": true
+		},
+		{
+			"name": "displayYoutube",
+			"title": "Afficher les vidéos Youtube",
+			"type": "bool",
+			"value": true
+		},
+		{
+			"name": "displayDailymotion",
+			"title": "Afficher les vidéos Dailymotion",
+			"type": "bool",
+			"value": true
+		},
+		{
+			"name": "displayTwitter",
+			"title": "Afficher les Tweet",
+			"type": "bool",
+			"value": true
+		},
+		{
+			"name": "lazyLoadingOnImg",
+			"title": "Activer le lazy loading",
+			"type": "bool",
+			"value": true
+		}
+	]
+}

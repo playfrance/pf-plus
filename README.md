@@ -6,6 +6,10 @@ PlayFrance Plus est une extension Chrome / Firefox apportant de nouvelles foncti
 ## Installation
 * **Chrome** - Récupérer la dernière version des sources pour la version Chrome. Dans le navigateur, aller dans Outils - Extensions, activer le mode Développeur et cliquer sur "Charger l'extension non empaquetée". Sélectionner ensuite le dossier contenant les sources et valider.
 * **Firefox** - Récupérer la dernière version du fichier .xpi et faites un glisser / déposer sur Firefox. L'installation débutera automatiquement.
+* **Opera 15+** - En attendant une éventuelle version spécifique à Opera, il est possible de facilement installer la version Chrome sous Opera. Voici la procédure :
+  * Avoir Opera en version 15+.
+  * Télécharger cette extension qui rend Opera compatible avec toutes les extensions Chrome.
+  * Installer l'extension PF+ (version Chrome) comme sur Chrome.
 
 ## Fonctionnalités
 Toutes les fonctionnalités sont désactivables en passant par le menu des options du navigateur.
@@ -20,7 +24,13 @@ Toutes les fonctionnalités sont désactivables en passant par le menu des optio
 * **Activer le Lazy Loading** - Avec cette option, les images ne se chargent plus toutes dés l'ouverture d'une page. Elles se chargent au fur et à mesure de la lecture de la page.
 
 ## Versions
+* 0.4 (31/01/2014) : Première version publique
 
 ## Bugs connus
+* Par défaut, les fonctionnalités ne sont pas activés sur la version Chrome de l'extension, contrairement à la version Firefox.
 
 ## Prochaines évolutions
+* Version Opera
+* Version Safari
+* Intégrer le nom de l'auteur lors d'une citation
+* Ajouter un retour à la ligne sur les Tweets

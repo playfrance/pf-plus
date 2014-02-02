@@ -28,9 +28,12 @@ Toutes les fonctionnalités sont désactivables en passant par le menu des optio
 
 ## Bugs connus
 * Par défaut, les fonctionnalités ne sont pas activés sur la version Chrome de l'extension, contrairement à la version Firefox.
+* Sous Firefox, le redimensionnement des images n'est pas optimale. La scrollbar horizontale apparait toujours dans certains cas.
 
 ## Prochaines évolutions
 * Version Opera
 * Version Safari
 * Intégrer le nom de l'auteur lors d'une citation
 * Ajouter un retour à la ligne sur les Tweets
+* Agrandir automatiquement la zone de saisie des messages lors de la sélection pour une réponse rapide
+* Agrandir la zone de saisie des messages pour les réponses classiques

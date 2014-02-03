@@ -6,7 +6,7 @@
 	"author": "PF Plus Team",
 	"contributors": ["Steven_PF", "UniT_I_ReSpAwN"],
 	"license": "MPL 2.0",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"icon": "data\\shared\\img\\icon48.png",
 	"icon64": "data\\shared\\img\\icon64.png",
 	"preferences": [

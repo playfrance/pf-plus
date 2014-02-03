@@ -24,8 +24,13 @@ function applyPfPlus(values) {
 	
 	// Redimensionnement des images
 	if (values.fixMaxWidthImg) {
+		$(".messagetable").css({
+			"table-layout": "fixed"
+		});
+
 		$(".messCase2 img").css({
 			"max-width": "100%",
+			"width": "auto",
 			"height": "auto"
 		});
 	}

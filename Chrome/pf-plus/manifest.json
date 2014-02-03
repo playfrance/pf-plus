@@ -1,6 +1,5 @@
 {
     "name": "PlayFrance Plus (PF+)",
-	"short_name": "pf-plus",
 	"author": "PF Plus Team",
     "version": "0.4.0",
     "manifest_version": 2,

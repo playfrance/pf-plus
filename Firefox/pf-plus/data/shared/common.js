@@ -139,7 +139,7 @@ function applyPfPlus(values) {
 			var href = $tweet.attr('href');
 			
 			if (href.indexOf('status') > 0) {// Lien au format classique https://twitter.com/jack/status/20
-				$tweet.replaceWith('<iframe border=0 frameborder=0 height=250 width=550 src="https://twitframe.com/show?url=' + href + '"></iframe>');
+				$tweet.replaceWith('<iframe border=0 frameborder=0 height=250 width=550 src="https://twitframe.com/show?url=' + href + '"></iframe><br />');
 				return;
 			}
 		});

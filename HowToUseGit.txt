@@ -1,0 +1,7 @@
+Initialiser répertoire en faisant un clic droit
+git config --global user.name USERNAME
+git config --global user.email EMAIL
+git remote add pf-plus https://USERNAME:PASSWORD@github.com/playfrance/pf-plus.git
+git pull pf-plus master
+
+git push pf-plus master

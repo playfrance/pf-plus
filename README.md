@@ -1,15 +1,12 @@
 PlayFrance Plus (PF+)
 =======
 
-PlayFrance Plus est une extension Chrome / Firefox apportant de nouvelles fonctionnalités au forum PlayFrance.
+PlayFrance Plus est une extension Chrome / Firefox et Opera (15+) apportant de nouvelles fonctionnalités au forum PlayFrance.
 
 ## Installation
 * **Chrome** - Récupérer la dernière version des sources pour la version Chrome. Dans le navigateur, aller dans Outils - Extensions, activer le mode Développeur et cliquer sur "Charger l'extension non empaquetée". Sélectionner ensuite le dossier contenant les sources et valider.
 * **Firefox** - Récupérer la dernière version du fichier .xpi et faites un glisser / déposer sur Firefox. L'installation débutera automatiquement.
-* **Opera 15+** - En attendant une éventuelle version spécifique à Opera, il est possible de facilement installer la version Chrome sous Opera. Voici la procédure :
-  * Avoir Opera en version 15+.
-  * Télécharger cette extension qui rend Opera compatible avec toutes les extensions Chrome.
-  * Installer l'extension PF+ (version Chrome) comme sur Chrome.
+* **Opera 15+** - Récupérer la dernière version du fichier .nex et double cliquer pour lancer l'installation. Par défaut, l'extension n'est pas active. Il convient donc de passer par l'écran Extensions pour l'activer.
 
 ## Fonctionnalités
 Toutes les fonctionnalités sont désactivables en passant par le menu des options du navigateur.
@@ -24,7 +21,8 @@ Toutes les fonctionnalités sont désactivables en passant par le menu des optio
 * **Activer le Lazy Loading** - Avec cette option, les images ne se chargent plus toutes dés l'ouverture d'une page. Elles se chargent au fur et à mesure de la lecture de la page.
 
 ## Versions
-* 0.4 (31/01/2014) : Première version publique
+* 0.4.0 (31/01/2014) : Première version publique
+* 0.4.1 (03/02/2014) : Ajout d'une version Opera (15+) et correction d'un bug sur le redimensionnement des images pour la version Firefox
 
 ## Bugs connus
 * Par défaut, les fonctionnalités ne sont pas activés sur la version Chrome de l'extension, contrairement à la version Firefox.

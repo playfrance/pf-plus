@@ -26,12 +26,16 @@ Toutes les fonctionnalités sont désactivables en passant par le menu des optio
 
 ## Bugs connus
 * Par défaut, les fonctionnalités ne sont pas activés sur la version Chrome de l'extension, contrairement à la version Firefox.
-* Sous Firefox, le redimensionnement des images n'est pas optimale. La scrollbar horizontale apparait toujours dans certains cas.
 
 ## Prochaines évolutions
-* Version Opera
 * Version Safari
+* Si l'option pour fixer la largeur max des images est actives, l'utilisateur doit pouvoir visualiser l'image dans son format natif en cliquant dessus
 * Intégrer le nom de l'auteur lors d'une citation
-* Ajouter un retour à la ligne sur les Tweets
 * Agrandir automatiquement la zone de saisie des messages lors de la sélection pour une réponse rapide
+* Ajouter des options de mises en forme pour les réponses rapides
+* Lors de l'envoi d'un post, transformer les url vers le forum en ajoutant le libellé du topic
 * Agrandir la zone de saisie des messages pour les réponses classiques
+* Pouvoir partager un topic ou un message
+* Pouvoir uploader une image et l'intégrer directement dans un message
+* Pouvoir masquer les posts de certains membres
+* Pouvoir masquer certains topics / sections

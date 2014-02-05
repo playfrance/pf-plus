@@ -175,4 +175,20 @@ function applyPfPlus(values) {
 			effect: "fadeIn"
 		});
 	}
+	
+	if (true) {
+		$(".reponserapide").addClass('pf-plus-reponserapide').focus(function() {
+			$("#content_form").animate({
+				height: "+=100"
+			}, 500, function() {
+				 // Animation complete
+			});
+		}).focusout(function() {
+			$("#content_form").animate({
+				height: "-=100"
+			}, 500, function() {
+				 // Animation complete
+			});
+		});
+	}
 }

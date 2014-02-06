@@ -22,6 +22,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 				"displayDailymotion": localStorage.getItem('displayDailymotion') === "true" ? true : false,
 				"displayTwitter": localStorage.getItem('displayTwitter') === "true" ? true : false,
 				"lazyLoadingOnImg": localStorage.getItem('lazyLoadingOnImg') === "true" ? true : false,
+				"betterqQuickResponse": localStorage.getItem('betterqQuickResponse') === "true" ? true : false,
 				
 				// Styles par constructeur
 				"themes": {

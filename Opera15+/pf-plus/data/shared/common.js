@@ -196,60 +196,65 @@ function applyPfPlus(values) {
 		});
 	}
 	
-	if (true && $('.reponserapide').length > 0) {
-		// Injection du JS du commentaire
-		$.getScript("/static/compressed/editPost.js?v=11102781422");
-		
-		// nettoyage
-		$("#md_fast_search").children("b, br").remove();
-		
-		// Ajout de l'input pour l'aperçu
-		var $newInput = $('<input type="button" accesskey="a" value="Aperçu" />').on("click", function(){
-			$('#apercu').css({ display: ''});
-			$('#apercu_contenu').val($("#content_form").val());
-			$('#apercu_form').submit();
-		});
-		
-		// Récupération des inputs
-		var $inputs = $("#md_fast_search input").add($newInput).detach();
-		
-		// Récupération du textarea
-		var $reponserapide = $(".reponserapide").detach();
-		
-		// Injection de notre interface
-		$("#addComment").after('<div class="pf-plus-wrap-reponserapide"><div class="pf-plus-buttons-reponserapide"><img tag="b" title="Mettre en gras le texte. Syntaxe : [b]texte[/b]" alt="[b]" src="/static/icones/message/bold.gif" /><img tag="i" title="Mettre en italique le texte. Syntaxe : [i]texte[/i]" alt="[i]" src="/static/icones/message/italic.gif" /><img tag="u" title="Souligner le texte. Syntaxe : [u]texte[/u]" alt="[u]" src="/static/icones/message/underline.gif" /><img tag="strike" title="Barrer le texte. Syntaxe : [strike]texte[/strike]" alt="[strike]" src="/static/icones/message/strike.gif" /><img tag="spoiler" title="Masquer le texte. Syntaxe : [spoiler]texte[/spoiler]" alt="[spoiler]" src="/static/icones/message/spoiler.gif" /><img tag="fixed" title="Ecrire avec une police de taille fixe. Syntaxe : [fixed]texte[/fixed]" alt="[fixed]" src="/static/icones/message/fixe.gif" /><img tag="cpp" title="Insérer du code C/C++. Syntaxe : [cpp]texte[/cpp]" alt="[cpp]" src="/static/icones/message/c.gif" /><img tag="url" title="Insérer une URL. Syntaxe : [url]texte[/url]" alt="[url]" src="/static/icones/message/url.gif" /><img tag="email" title="Insérer une adresse email. Syntaxe : [email]email@hostname.com[/email]" alt="[email]" src="/static/icones/message/email.gif" /><img tag="img" title="Insérer une image. Syntaxe : [img]http://www.exemple.com/exemple.jpg[/img]" alt="[img]" src="/static/icones/message/image.gif" /><img tag="*" title="Insérer une puce. Syntaxe : [*]texte" alt="[*]" src="/static/icones/message/puce.gif" /></div></div>');
-		$(".pf-plus-wrap-reponserapide").append($reponserapide);
-		
-		// Injection du JS
-		$(".pf-plus-buttons-reponserapide img").on("click", function(){
-			var tag = $(this).attr("tag");
-			var open = '[' + tag + ']';
-			var close = '';
+	if (values.betterqQuickResponse && $('.reponserapide').length > 0) {
+		// Récupération du code de l'utilisateur
+		var $inputHidden = $('input[name="hash_check"]:first');
+		if ($inputHidden.length > 0)
+		{
+			// Injection du JS du commentaire
+			$.getScript("/static/compressed/editPost.js?v=11102781422");
 			
-			if (tag != "*") {
-				close = '[/' + tag + ']';
-			}
+			// nettoyage
+			$("#md_fast_search").children("b, br").remove();
 			
-			TAinsert(open, close);
-		});
-		
-		// Injection des inputs
-		$(".pf-plus-wrap-reponserapide").after($("<div></div>").append($inputs));
-		
-		// Amélioration affichage
-		$(".reponserapide").addClass('pf-plus-reponserapide');
+			// Ajout de l'input pour l'aperçu
+			var $newInput = $('<input type="button" accesskey="a" value="Aperçu" />').on("click", function(){
+				$('#apercu').css({ display: ''});
+				$('#apercu_contenu').val($("#content_form").val());
+				$('#apercu_form').submit();
+			});
 			
-		// Injection de l'aperçu
-		$("#md_fast_search").append('<div id="apercu" style="display:none"><table><tr class="reponse">'+
-										'<th class="repCase1">Aperçu</th>'+
-										'<th class="repCase2"><iframe name="apercu_frame" id="apercu_frame" style="border:0px" src=""></iframe></th>'+
-									'</tr></table></div>');
-									
-		$("#md_fast_search").append('<form action="/apercu.php" target="apercu_frame" method="post" name="apercu_form" id="apercu_form">'+
-										'<input type="hidden" name="hash_check" value="3175f08ad575ef5790686004db5c0635">'+
-										'<input type="hidden" name="apercu_contenu" id="apercu_contenu" value="">'+
-										'<input type="hidden" name="config" value="pf.inc">'+
-									'</form>');							
-									
+			// Récupération des inputs
+			var $inputs = $("#md_fast_search input").add($newInput).detach();
+			
+			// Récupération du textarea
+			var $reponserapide = $(".reponserapide").detach();
+			
+			// Injection de notre interface
+			$("#addComment").after('<div class="pf-plus-wrap-reponserapide"><div class="pf-plus-buttons-reponserapide"><img tag="b" title="Mettre en gras le texte. Syntaxe : [b]texte[/b]" alt="[b]" src="/static/icones/message/bold.gif" /><img tag="i" title="Mettre en italique le texte. Syntaxe : [i]texte[/i]" alt="[i]" src="/static/icones/message/italic.gif" /><img tag="u" title="Souligner le texte. Syntaxe : [u]texte[/u]" alt="[u]" src="/static/icones/message/underline.gif" /><img tag="strike" title="Barrer le texte. Syntaxe : [strike]texte[/strike]" alt="[strike]" src="/static/icones/message/strike.gif" /><img tag="spoiler" title="Masquer le texte. Syntaxe : [spoiler]texte[/spoiler]" alt="[spoiler]" src="/static/icones/message/spoiler.gif" /><img tag="fixed" title="Ecrire avec une police de taille fixe. Syntaxe : [fixed]texte[/fixed]" alt="[fixed]" src="/static/icones/message/fixe.gif" /><img tag="cpp" title="Insérer du code C/C++. Syntaxe : [cpp]texte[/cpp]" alt="[cpp]" src="/static/icones/message/c.gif" /><img tag="url" title="Insérer une URL. Syntaxe : [url]texte[/url]" alt="[url]" src="/static/icones/message/url.gif" /><img tag="email" title="Insérer une adresse email. Syntaxe : [email]email@hostname.com[/email]" alt="[email]" src="/static/icones/message/email.gif" /><img tag="img" title="Insérer une image. Syntaxe : [img]http://www.exemple.com/exemple.jpg[/img]" alt="[img]" src="/static/icones/message/image.gif" /><img tag="*" title="Insérer une puce. Syntaxe : [*]texte" alt="[*]" src="/static/icones/message/puce.gif" /></div></div>');
+			$(".pf-plus-wrap-reponserapide").append($reponserapide);
+			
+			// Injection du JS
+			$(".pf-plus-buttons-reponserapide img").on("click", function(){
+				var tag = $(this).attr("tag");
+				var open = '[' + tag + ']';
+				var close = '';
+				
+				if (tag != "*") {
+					close = '[/' + tag + ']';
+				}
+				
+				TAinsert(open, close);
+			});
+			
+			// Injection des inputs
+			$(".pf-plus-wrap-reponserapide").after($("<div></div>").append($inputs));
+			
+			// Amélioration affichage
+			$(".reponserapide").addClass('pf-plus-reponserapide');
+				
+			// Injection de l'aperçu
+			$("#md_fast_search").append('<div id="apercu" style="display:none"><table><tr class="reponse">'+
+											'<th class="repCase1">Aperçu</th>'+
+											'<th class="repCase2"><iframe name="apercu_frame" id="apercu_frame" style="border:0px" src=""></iframe></th>'+
+										'</tr></table></div>');
+			
+			var $uniqueUserCode = $inputHidden.val();					
+			$("#md_fast_search").append('<form action="/apercu.php" target="apercu_frame" method="post" name="apercu_form" id="apercu_form">'+
+											'<input type="hidden" name="hash_check" value="' + $uniqueUserCode + '">'+
+											'<input type="hidden" name="apercu_contenu" id="apercu_contenu" value="">'+
+											'<input type="hidden" name="config" value="pf.inc">'+
+										'</form>');
+		}
 	}
 }

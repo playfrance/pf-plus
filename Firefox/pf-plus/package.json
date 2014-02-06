@@ -93,6 +93,12 @@
 			"title": "Activer le lazy loading",
 			"type": "bool",
 			"value": true
+		},
+		{
+			"name": "betterqQuickResponse",
+			"title": "Améliorer la réponse rapide",
+			"type": "bool",
+			"value": true
 		}
 	]
 }

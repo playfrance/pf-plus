@@ -44,6 +44,7 @@ pageMod.PageMod({
 				"displayDailymotion": simplePrefs.prefs.displayDailymotion,
 				"displayTwitter": simplePrefs.prefs.displayTwitter,
 				"lazyLoadingOnImg": simplePrefs.prefs.lazyLoadingOnImg,
+				"betterqQuickResponse": simplePrefs.prefs.betterqQuickResponse,
 				
 				// Styles par constructeur
 				"themes": {

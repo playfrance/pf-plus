@@ -20,6 +20,17 @@
 .pf-plus-context-menu a:hover {
 	background-color: #EEEEEE;
 }
+.pf-plus-wrap-reponserapide {
+	overflow: hidden;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+.pf-plus-buttons-reponserapide {
+	text-align: left;
+}
+.pf-plus-buttons-reponserapide img {
+	cursor: pointer;
+}
 .pf-plus-reponserapide {
 	width: 700px;
 	min-width: 700px;

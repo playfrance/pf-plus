@@ -130,10 +130,12 @@ function applyPfPlus(values) {
 				}
 				
 				if (idVideo) {
-					$a.replaceWith('<iframe width="560" height="315" src="//www.youtube.com/embed/' + idVideo + '" frameborder="0" allowfullscreen></iframe>');
+					$a.replaceWith('<div class="lazyYT" data-youtube-id="' + idVideo + '" data-width="560" data-height="315">chargement...</div>');
 				}
 			}
 		});
+		
+		$('.lazyYT').lazyYT();
 	}
 		
 	// Dailymotion

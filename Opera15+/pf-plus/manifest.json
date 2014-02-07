@@ -26,6 +26,7 @@
 			"data/shared/scripts/URI-1.12.0.min.js",
 			"data/shared/scripts/jquery.URI-1.12.0.min.js",
 			"data/shared/scripts/jquery.lazyload-1.9.3.min.js",
+			"data/shared/scripts/lazyYT.min.js",
 			"data/init.js",
 			"data/shared/common.js"
 		]

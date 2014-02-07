@@ -22,6 +22,7 @@ pageMod.PageMod({
 		data.url("shared/scripts/URI-1.12.0.min.js"),
 		data.url("shared/scripts/jquery.URI-1.12.0.min.js"),
 		data.url("shared/scripts/jquery.lazyload-1.9.3.min.js"),
+		data.url("shared/scripts/lazyYT.min.js"),
         data.url("shared/common.js"),
         data.url("init.js")
     ],

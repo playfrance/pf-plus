@@ -68,17 +68,39 @@ function applyPfPlus(values) {
 					if (text.length && isInComment) {
 						// Récupération de l'auteur du message cité
 						var $parentRoot = $(selection.anchorNode.parentNode).parents('.message');
-						var $topicParams = $parentRoot.find('a[href*="/citer-"]:first').attr("href").split('/citer-')[1].split('.')[0].split('-');
+						var $topicParams = null;
+						var queryString = null;
+						var $citerLink = $parentRoot.find('a[href*="/citer-"]:first');
+						if ($citerLink.length) {
+							queryString = $citerLink.attr("href").split('/citer-')[1].split('.')[0].split('-');
+							if (queryString[0].length && queryString[3].length) {
+								$topicParams = {
+									topic : queryString[0],
+									refMessage: queryString[3]
+								};
+							}
+						}
+						else {
+							$citerLink = $parentRoot.find('a[href*="ref="]:first');
+							if ($citerLink.length) {
+								queryString = URI.parseQuery($citerLink.attr('uri:query'));
+								if (queryString.post && queryString.ref) {
+									$topicParams = {
+										topic : queryString.post,
+										refMessage: queryString.ref
+									};
+								}
+							}
+						}
+
 						var $authorId = $parentRoot.find('a[href*="/profil-"]:first').attr("href").split('/profil-')[1].split('.')[0].split('-');
 						
 						var $citation = '';
-						if ($topicParams[0].length && $topicParams[3].length && $authorId.length)
-						{
-							var result = $topicParams[0] + ',' + $topicParams[3] + ',' + $authorId;
+						if ($topicParams != null && $authorId.length) {
+							var result = $topicParams.topic + ',' + $topicParams.refMessage + ',' + $authorId;
 							$citation = '[quotemsg=' + result + ']' + text + '[/quotemsg]';
 						}
-						else
-						{
+						else {
 							$citation = '[quote]' + text + '[/quote]';
 						}
 					

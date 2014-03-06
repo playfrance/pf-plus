@@ -1,7 +1,13 @@
-Initialiser r�pertoire en faisant un clic droit
+Initialiser r�pertoire en faisant un clic droit
 git config --global user.name USERNAME
 git config --global user.email EMAIL
 git remote add pf-plus https://USERNAME:PASSWORD@github.com/playfrance/pf-plus.git
 git pull pf-plus master
 
+Archiver des modifications :
+Clic doit et sélectionner Git Commit Tool
+Indexer les modifications
+Signer et commenter les modifications
+Commiter les modifications
+Clic doit et sélectionner Git Bash
 git push pf-plus master

@@ -1,18 +1,17 @@
 {
     "name": "PlayFrance Plus (PF+)",
 	"author": "PF Plus Team",
-    "version": "0.5.0",
+    "version": "0.7.0",
     "manifest_version": 2,
     "description": "PlayFrance is better now",
 	"options_page": "data/options.html",
 	"icons": {
-      "128": "data/shared/img/icon128.png",
-      "16": "data/shared/img/icon16.png",
-      "48": "data/shared/img/icon48.png"
+		"128": "data/shared/img/icon128.png",
+		"16": "data/shared/img/icon16.png",
+		"48": "data/shared/img/icon48.png"
 	},
 	"background": {
-      "persistent": false,
-      "scripts": [ "data/background.js" ]
+		"page": "data/background.html"
 	},
     "content_scripts": [{
         "matches": [
@@ -35,5 +34,14 @@
 		"data/shared/css/styles.css",
 		"data/shared/img/logo.png",
 		"data/shared/img/spacer.gif"
-	]
+	],
+	"permissions": [
+		"tabs", // Ajoute la permission au module des onglets
+		"http://forum.playfrance.com/"
+	],
+	"browser_action": {
+		"badge": "",
+		"default_icon": "data/shared/img/icon16.png",
+		"default_popup": "data/shared/popup.html"
+	}
 }

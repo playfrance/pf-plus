@@ -1,7 +1,97 @@
 /**
+* Background JS for getting fav
+*/
+var site = new Site('PlayFrance', "forum.playfrance.com", "pf.inc", 120000, '');
+var timeout = null;
+
+function updateBadge(nbUnread) {
+	if (nbUnread && nbUnread != null && parseInt(nbUnread) != NaN && parseInt(nbUnread) > 0) {
+		chrome.browserAction.setBadgeText({text:""+nbUnread});
+		animateFlip();
+	} else if (nbUnread != null && parseInt(nbUnread) == 0){
+		chrome.browserAction.setBadgeText({text:""});
+	} else if (nbUnread != null && nbUnread.length > 0){
+		chrome.browserAction.setBadgeText({text:nbUnread});
+	} else {
+		chrome.browserAction.setBadgeText({text:"..."});
+	}
+}
+
+function refresh(onSuccess, onError) {
+	site.loadFavsContent(
+		function(categories, countTopics, isConnected) {
+			updateBadge(countTopics);
+
+			if (onSuccess) {
+				onSuccess(categories, countTopics, isConnected);
+			}
+			
+			clearTimeout(timeout);
+			timeout = setTimeout(refresh, site.minRefreshTime);
+		},
+		function () {
+			if (onError) {
+				onError();
+			}
+		}
+	);
+}
+
+function refreshAfterTimeout(timeout) {
+	setTimeout(refresh, timeout);
+}
+
+refresh();
+
+/***************************************************************************************/
+/* to rotate the browser action icon, (not so) shamelessly copied from google Examples */	
+/***************************************************************************************/
+var rotation = 0;
+var animationFrames = 36;
+var animationSpeed = 10; // ms
+
+function ease(x) {
+	return (1-Math.sin(Math.PI/2+x*Math.PI))/2;
+}
+
+function animateFlip() {
+	rotation += 1/animationFrames;
+	drawIconAtRotation();
+
+	if (rotation <= 1) {
+		setTimeout(animateFlip, animationSpeed);
+	} else {
+		rotation = 0;
+		drawIconAtRotation();
+	}
+}
+
+function drawIconAtRotation() {
+	iconImage = document.getElementById('icon');
+	canvas = document.getElementById('canvas');
+	canvasContext = canvas.getContext('2d');
+	canvasContext.save();
+	canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+	canvasContext.translate(
+			Math.ceil(canvas.width/2),
+			Math.ceil(canvas.height/2));
+	canvasContext.rotate(2*Math.PI*ease(rotation));
+	canvasContext.drawImage(iconImage,
+			-Math.ceil(canvas.width/2),
+			-Math.ceil(canvas.height/2));
+	canvasContext.restore();
+
+	var imageData = canvasContext.getImageData(0, 0, canvas.width,canvas.height);
+	if (imageData instanceof ImageData)
+		chrome.browserAction.setIcon({imageData: imageData});
+}
+/***************************************************************************************/
+/***************************************************************************************/
+/***************************************************************************************/
+
+/**
 * Background JS for getting options
 */
-
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.method == "getStorage") {
 		if(request.key == "all") {

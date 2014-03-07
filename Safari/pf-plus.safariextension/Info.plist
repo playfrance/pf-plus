@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>PF Plus Team</string>
+	<key>Builder Version</key>
+	<string>534.57.2</string>
+	<key>CFBundleDisplayName</key>
+	<string>pf-plus</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.pf-plus</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.7</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Database Quota</key>
+		<real>1048576</real>
+		<key>Global Page</key>
+		<string>data/background.html</string>
+		<key>Popovers</key>
+		<array>
+			<dict>
+				<key>Filename</key>
+				<string>data/shared/popup.html</string>
+				<key>Height</key>
+				<real>340</real>
+				<key>Identifier</key>
+				<string>popup</string>
+				<key>Width</key>
+				<real>470</real>
+			</dict>
+		</array>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string>open-popover</string>
+				<key>Identifier</key>
+				<string>pf-plus</string>
+				<key>Image</key>
+				<string>data/shared/img/icon16.png</string>
+				<key>Label</key>
+				<string>PF+</string>
+				<key>Popover</key>
+				<string></string>
+				<key>Tool Tip</key>
+				<string>PlayFrance Plus (PF+)</string>
+			</dict>
+		</array>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>End</key>
+			<array>
+				<string>data/init.js</string>
+				<string>data/shared/common.js</string>
+			</array>
+			<key>Start</key>
+			<array>
+				<string>data/shared/scripts/jquery-2.1.0.min.js</string>
+				<string>data/shared/scripts/URI-1.12.0.min.js</string>
+				<string>data/shared/scripts/jquery.URI-1.12.0.min.js</string>
+				<string>data/shared/scripts/jquery.lazyload-1.9.3.min.js</string>
+				<string>data/shared/scripts/lazyYT.min.js</string>
+			</array>
+		</dict>
+		<key>Stylesheets</key>
+		<array>
+			<string>data/shared/css/styles.css</string>
+		</array>
+		<key>Whitelist</key>
+		<array>
+			<string>http://forum.playfrance.com/*</string>
+			<string>http://forum.xboxfrance.com/*</string>
+			<string>http://forum.wiidsfrance.com/*</string>
+			<string>http://forum.pcactu.com/*</string>
+		</array>
+	</dict>
+	<key>Description</key>
+	<string>PlayFrance is better now</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Allowed Domains</key>
+			<array>
+				<string>forum.playfrance.com</string>
+				<string>forum.xboxfrance.com</string>
+				<string>forum.wiidsfrance.com</string>
+				<string>forum.pcactu.com</string>
+			</array>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>Some</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

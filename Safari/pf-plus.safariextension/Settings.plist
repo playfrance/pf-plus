@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>displayNewLogo</string>
+		<key>Title</key>
+		<string>Afficher le logo personnalisé</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<false/>
+		<key>Key</key>
+		<string>displayUniqueTheme</string>
+		<key>Title</key>
+		<string>Activer le thème unique (ALPHA)</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>sony</string>
+		<key>Key</key>
+		<string>selectedUniqueTheme</string>
+		<key>Title</key>
+		<string>Choix du thème</string>
+		<key>Titles</key>
+		<array/>
+		<key>Type</key>
+		<string>ListBox</string>
+		<key>Values</key>
+		<array>
+			<string>sony</string>
+			<string>microsoft</string>
+			<string>nintendo</string>
+			<string>pc</string>
+		</array>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>removeSignatures</string>
+		<key>Title</key>
+		<string>Masquer les signatures des membres</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>fixMaxWidthImg</string>
+		<key>Title</key>
+		<string>Fixer le problème de largeur d'images (pour éviter l'apparition d'une scrollbar horizontale)</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>addTopButtons</string>
+		<key>Title</key>
+		<string>Ajouter un bouton \\ Haut de page \\ sur chaque post d'un topic</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>fastQuote</string>
+		<key>Title</key>
+		<string>Activer la citation rapide (au clic droit)</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>displayYoutube</string>
+		<key>Title</key>
+		<string>Afficher les vidéos Youtube</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>displayDailymotion</string>
+		<key>Title</key>
+		<string>Afficher les vidéos Dailymotion</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>displayTwitter</string>
+		<key>Title</key>
+		<string>Afficher les Tweet</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>lazyLoadingOnImg</string>
+		<key>Title</key>
+		<string>Activer le lazy loading</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>betterqQuickResponse</string>
+		<key>Title</key>
+		<string>Améliorer la réponse rapide</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+</array>
+</plist>

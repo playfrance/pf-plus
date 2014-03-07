@@ -1,0 +1,40 @@
+.pf-plus-context-menu {
+	width: 200px;
+	position: absolute;
+	display: none;
+	top: 0;
+	left: 0;
+	z-index: 1002;
+	background-color: white;
+	border: 1px solid darkgrey;
+	line-height: 13px;
+	font-family: Arial,sans-serif;
+	font-size: 13px;
+	box-shadow: rgba(0, 0, 0, 0.5) 3px 3px 3px;
+}
+.pf-plus-context-menu a {
+	display: block;
+	padding:8px 10px;
+	color: black;
+}
+.pf-plus-context-menu a:hover {
+	background-color: #EEEEEE;
+}
+.pf-plus-wrap-reponserapide {
+	overflow: hidden;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+.pf-plus-buttons-reponserapide {
+	text-align: left;
+}
+.pf-plus-buttons-reponserapide img {
+	cursor: pointer;
+}
+.pf-plus-reponserapide {
+	width: 700px;
+	min-width: 700px;
+	max-width: 700px;
+	height: 200px;
+	min-height: 200px;
+}

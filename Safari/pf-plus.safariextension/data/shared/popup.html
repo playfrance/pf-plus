@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="StyleSheet" href="css\popup.css" type="text/css" />
+	<script src="scripts\jquery-2.1.0.min.js"></script>
+	<script src="..\popup.js"></script>
+	<script src="popup.js"></script>
+  </head>
+  <body>
+	<nav>
+		<ul>
+			<li id="openAll"><a href="#">Tout ouvrir</a></li>
+			<li id="refresh"><a href="#">Rafraichir</a></li>
+			<li id="goToSite"><a href="#">PlayFrance</a></li>
+		</ul>
+	</nav>
+	
+	<div id="connected">
+		<fieldset>
+			<legend>Mes favoris</legend>
+			<section id="contentFavs" class="content">
+			</section>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Mes MP</legend>
+			<section id="contentMP" class="content">
+				<p>En construction</p>
+			</section>
+		</fieldset>
+	</div>
+	
+	<div id="disconnected">
+		<p>Vous n'&ecirc;tes pas connect&eacute;(e)</p>
+	</div>
+	
+	<nav>
+		<ul>
+			<li id="options"><a href="#">Options</a></li>
+		</ul>
+	</nav>
+  </body>
+</html>

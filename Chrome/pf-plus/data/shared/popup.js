@@ -21,10 +21,6 @@ $(document).ready(function() {
 /*************/
 /* Functions */
 /*************/
-function isConnected() {
-	return true;
-}
-
 function setContent() {
 	getCommons().refresh(
 		function(categories, countTopics, isConnected) {

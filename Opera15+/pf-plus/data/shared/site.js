@@ -4,16 +4,16 @@ function Site (name, hostAndBase, config, minRefreshTime, fragment) {
 	this.config = config;
 	this.minRefreshTime = minRefreshTime;
 	this.fragment = fragment;
-	//this.parsableMpsUrl = undefined;//TODO : Voir à quoi ça sert
 	
 	this.unreadRex = /title="Sujet n.\d+">([^<]+).+sujetCase5"><a href="([^"]+).+Aller au dernier message lu sur ce sujet \(p.(\d+)\)/g;
 	this.entryUrlRex = /cat=(\d+)&amp;(subcat=(\d+)&amp;)?post=(\d+)&amp;page=(\d+)/;
-	//this.mpRex = /class="red">Vous avez (\d*) nouveau/;//TODO : A implémenter
+	this.mpRex = /class="red">Vous avez (\d*) nouveau/;
 	this.catsFavRex = /<a href="([^#].*&amp;cat=(\d+)[^"]+)" class="cHeader">([^<]+)/g;
 	this.notConnectedRex = /Aucun sujet que vous avez lu n'est connu/;
 	
 	this.categories = new Array();
 	this.countTopics = 0;
+	this.countMps = 0;
 	this.isConnected = false;
 	
 	Site.prototype.applyXtor = function(url) {
@@ -77,9 +77,13 @@ function Site (name, hostAndBase, config, minRefreshTime, fragment) {
 				site.isConnected = false;
 				site.categories = new Array();
 				site.countTopics = 0;
+				site.countMps = 0;
 				
 				if (site.notConnectedRex.exec(data) == null) {
 					site.isConnected = true;
+					
+					// Récupération du nombre de nouveaux messages privés
+					site.countMps = site.parseCountMps(data);
 					
 					// Récupération des catégories
 					site.categories = site.parseCatsFav(data);
@@ -100,7 +104,7 @@ function Site (name, hostAndBase, config, minRefreshTime, fragment) {
 				}
 				
 				if (onSuccess) {
-					onSuccess(site.categories, site.countTopics, site.isConnected);
+					onSuccess(site.categories, site.countTopics, site.countMps, site.isConnected);
 				}
 			},
 			failure: function (data) {
@@ -116,7 +120,8 @@ function Site (name, hostAndBase, config, minRefreshTime, fragment) {
 		});
 	}
 	Site.prototype.parseCatsFav = function(content) {
-		cats = new Array();
+		var matches = null;
+		var cats = new Array();
 		
 		while (matches = this.catsFavRex.exec(content)) {
 			// Récupération de l'Id Cat de son libellé et de son url
@@ -140,8 +145,15 @@ function Site (name, hostAndBase, config, minRefreshTime, fragment) {
 		
 		return unreads;
 	};
-	/*To Be implemented*/
-	Site.prototype.parseMps = function(content) {
-		return null;
+	Site.prototype.parseCountMps = function(content) {
+		var matches = null;
+		var countMps = 0;
+		
+		matches = this.mpRex.exec(content);
+		if (matches != null) {
+			countMps = matches[1];
+		}
+
+		return countMps;
 	};
 }

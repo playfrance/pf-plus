@@ -5,8 +5,10 @@ a:hover { text-decoration: none; }
 
 body { width: 450px; }
 
-nav { text-align: right; }
-nav ul { display: inline; margin: 0; padding: 0; }
+nav { overflow: hidden; }
+nav ul { display: inline; margin: 0; padding: 0; float: right; }
+nav:first-child ul:first-child { float: left; }
+nav:first-child ul:first-child a { color: red; }
 nav ul li { display: inline; }
 nav ul li a { color: #1E4A8B; }
 

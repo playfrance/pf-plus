@@ -138,6 +138,24 @@ function applyPfPlus(values) {
 		}
 	}
 	
+	$('.msg-pseudo a').each(function(index) {
+		var $div = $(this);
+		var pseudo = $('#login_area strong').text().replace('Bienvenue ', '');
+		
+		if ($div.text() == pseudo) {
+			$div.parents('.message').removeClass('cBackCouleurTab1 cBackCouleurTab2 cBackCouleurTabModo').addClass('pf-plus-cBackCouleurTabMy');
+		}
+	});
+	
+	$('.citation a').each(function(index) {
+		var $a = $(this);
+		var pseudo = $('#login_area strong').text().replace('Bienvenue ', '');
+		
+		if ($a.text().replace(' a écrit :', '') == pseudo) {
+			$a.parents('.messCase2').find('.toolbar').after('<div class="pf-plus-pseudoinpost">Votre pseudo appara&icirc;t dans ce message</div>');
+		}
+	});
+	
 	// Chargement des vidéos
 	// Youtube
 	if (values.displayYoutube) {
@@ -150,7 +168,7 @@ function applyPfPlus(values) {
 				} else {
 					idVideo = $a.attr('uri:filename');
 				}
-
+				
 				if (idVideo) {
 					$a.replaceWith('<div class="lazyYT" data-youtube-id="' + idVideo + '" data-width="560" data-height="315">chargement...</div>');
 				}

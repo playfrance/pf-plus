@@ -21,11 +21,11 @@ function updateBadge(nbUnread) {
 
 function refresh(onSuccess, onError) {
 	site.loadFavsContent(
-		function(categories, countTopics, isConnected) {
+		function(categories, countTopics, countMps, isConnected) {
 			updateBadge(countTopics);
 
 			if (onSuccess) {
-				onSuccess(categories, countTopics, isConnected);
+				onSuccess(categories, countTopics, countMps, isConnected);
 			}
 			
 			clearTimeout(timeout);

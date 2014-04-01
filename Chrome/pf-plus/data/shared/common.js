@@ -164,7 +164,7 @@ function applyPfPlus(values) {
 
 		if ($span.length > 0 && $span.text().toLowerCase() == 'page suivante') {
 			// On récupère l'identifiant du dernier post de la page
-			$lastMessageId = $('.message:last a:first').attr('name');
+			var $lastMessageId = $('.message:last a:first').attr('name');
 			
 			setInterval(function() {
 				$.ajax({
@@ -177,10 +177,18 @@ function applyPfPlus(values) {
 						var countNewPosts = 0;
 						var hasNewPage = false;
 						
+						// Nettoyage du titre de l'onglet
+						if (document.title.indexOf('(') == 0) {
+							document.title = document.title.substring(document.title.indexOf(')') + 2);
+						}
+						
 						// Check des messages
 						if ($data.find('.message:last a:first').attr('name') != $lastMessageId) {
+							var $toto = $data.find('[name=' + $lastMessageId + ']').parents('.messagetable');
+
 							// Un ou plusieurs nouveaux posts
-							countNewPosts = 1;
+							countNewPosts = $toto.nextAll('.messagetable').length;
+							document.title = '(' + countNewPosts + ') ' + document.title;
 						}
 						
 						// Check des pages
@@ -203,6 +211,11 @@ function applyPfPlus(values) {
 							// On injecte l'encart							
 							$('.zero').before('<p id="openNewPosts" style="border-top: 6px solid #1E4786; margin: 0;"><a href="#" style="display: block; border: 1px solid #2B68A9; color: #2B68A9; background-color: #ebebeb; margin: 5px; box-sizing: border-box; padding: 2px 2px;">' + message + '</a></p>');
 							$('#openNewPosts a').on("click", function(linkEvent) {
+								// Nettoyage du titre de l'onglet
+								if (document.title.indexOf('(') == 0) {
+									document.title = document.title.substring(document.title.indexOf(')') + 2);
+								}
+							
 								var newMessages = new Array();
 								var alreadyFind = false;
 								
@@ -251,7 +264,7 @@ function applyPfPlus(values) {
 						
 					}
 				});
-			}, 10000);
+			}, 120000);
 		}
 	}
 	

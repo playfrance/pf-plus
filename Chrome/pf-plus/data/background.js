@@ -113,6 +113,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 				"displayTwitter": localStorage.getItem('displayTwitter') === "true" ? true : false,
 				"lazyLoadingOnImg": localStorage.getItem('lazyLoadingOnImg') === "true" ? true : false,
 				"betterqQuickResponse": localStorage.getItem('betterqQuickResponse') === "true" ? true : false,
+				"displayMyPosts": localStorage.getItem('displayMyPosts') === "true" ? true : false,
+				"refreshAutoTopic": localStorage.getItem('refreshAutoTopic') === "true" ? true : false,
+				"selectedIntervalRefreshAutoTopic": localStorage.getItem('selectedIntervalRefreshAutoTopic') === 'null' ? null : localStorage.getItem('selectedIntervalRefreshAutoTopic'),
 				
 				// Styles par constructeur
 				"themes": {

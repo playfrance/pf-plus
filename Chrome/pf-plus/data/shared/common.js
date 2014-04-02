@@ -139,132 +139,139 @@ function applyPfPlus(values) {
 	}
 	
 	// Mise en évidence de ses posts
-	$('.msg-pseudo a').each(function(index) {
-		var $div = $(this);
-		var pseudo = $('#login_area strong').text().replace('Bienvenue ', '');
+	if (values.displayMyPosts) {
+		$('.msg-pseudo a').each(function(index) {
+			var $div = $(this);
+			var pseudo = $('#login_area strong').text().replace('Bienvenue ', '');
+			
+			if ($div.text() == pseudo) {
+				$div.parents('.message').removeClass('cBackCouleurTab1 cBackCouleurTab2 cBackCouleurTabModo').addClass('pf-plus-cBackCouleurTabMy');
+			}
+		});
 		
-		if ($div.text() == pseudo) {
-			$div.parents('.message').removeClass('cBackCouleurTab1 cBackCouleurTab2 cBackCouleurTabModo').addClass('pf-plus-cBackCouleurTabMy');
-		}
-	});
-	
-	// Mise en évidence des réponses à ses posts
-	$('.citation a').each(function(index) {
-		var $a = $(this);
-		var pseudo = $('#login_area strong').text().replace('Bienvenue ', '');
-		
-		if ($a.text().replace(' a écrit :', '') == pseudo) {
-			$a.parents('.messCase2').find('.toolbar').after('<div class="pf-plus-pseudoinpost">Votre pseudo appara&icirc;t dans ce message</div>');
-		}
-	});
+		// Mise en évidence des réponses à ses posts
+		$('.citation a').each(function(index) {
+			var $a = $(this);
+			var pseudo = $('#login_area strong').text().replace('Bienvenue ', '');
+			
+			if ($a.text().replace(' a écrit :', '') == pseudo) {
+				$a.parents('.messCase2').find('.toolbar').after('<div class="pf-plus-pseudoinpost">Votre pseudo appara&icirc;t dans ce message</div>');
+			}
+		});
+	}
 	
 	// Rechargement dynamique des posts
-	if ($('.reponserapide').length > 0) {
-		var $span = $('.cFondu:first');
+	if (values.refreshAutoTopic) {
+		if ($('.reponserapide').length > 0) {
+			var $span = $('.cFondu:first');
+			var $pagepresuiv = $('.pagepresuiv:first');
 
-		if ($span.length > 0 && $span.text().toLowerCase() == 'page suivante') {
-			// On récupère l'identifiant du dernier post de la page
-			var $lastMessageId = $('.message:last a:first').attr('name');
-			
-			setInterval(function() {
-				$.ajax({
-					type: "GET",
-					url: document.location,
-					contentType: "text/html; charset=utf-8",
-					dataType: "html",
-					success: function (data, status) {
-						var $data = $(data);
-						var countNewPosts = 0;
-						var hasNewPage = false;
-						
-						// Nettoyage du titre de l'onglet
-						if (document.title.indexOf('(') == 0) {
-							document.title = document.title.substring(document.title.indexOf(')') + 2);
-						}
-						
-						// Check des messages
-						if ($data.find('.message:last a:first').attr('name') != $lastMessageId) {
-							var $toto = $data.find('[name=' + $lastMessageId + ']').parents('.messagetable');
-
-							// Un ou plusieurs nouveaux posts
-							countNewPosts = $toto.nextAll('.messagetable').length;
-							document.title = '(' + countNewPosts + ') ' + document.title;
-						}
-						
-						// Check des pages
-						var $spanData = $data.find('.cFondu:first');
-						if ($spanData.length == 0 || $spanData.text().toLowerCase() != 'page suivante') {
-							// Une nouvelle page
-							hasNewPage = true;
-						}
-						
-						// Gestion des cas
-						// Nettoyage
-						$('#openNewPosts').remove();
-						
-						// Injection
-						if (countNewPosts > 0) {
-							// On ajoute un encart en bas avec le libellé 'Afficher n nouveaux messages'
-							var hasMore = countNewPosts > 1;
-							var message = 'Afficher ' + countNewPosts + ' nouveau' + (hasMore ? 'x' : '') + ' message' + (hasMore ? 's' : '');	
-
-							// On injecte l'encart							
-							$('.zero').before('<p id="openNewPosts" style="border-top: 6px solid #1E4786; margin: 0;"><a href="#" style="display: block; border: 1px solid #2B68A9; color: #2B68A9; background-color: #ebebeb; margin: 5px; box-sizing: border-box; padding: 2px 2px;">' + message + '</a></p>');
-							$('#openNewPosts a').on("click", function(linkEvent) {
-								// Nettoyage du titre de l'onglet
-								if (document.title.indexOf('(') == 0) {
-									document.title = document.title.substring(document.title.indexOf(')') + 2);
-								}
+			if (($span.length > 0 && $span.text().toLowerCase() == 'page suivante') || $pagepresuiv.length == 0) {
+				// On récupère l'identifiant du dernier post de la page
+				var $lastMessageId = $('.message:last a:first').attr('name');
+				
+				var interval = parseInt(values.selectedIntervalRefreshAutoTopic == null ? '120' : values.selectedIntervalRefreshAutoTopic) * 1000;
+				
+				setInterval(function() {
+					$.ajax({
+						type: "GET",
+						url: document.location,
+						contentType: "text/html; charset=utf-8",
+						dataType: "html",
+						success: function (data, status) {
+							var $data = $(data);
+							var countNewPosts = 0;
+							var hasNewPage = false;
 							
-								var newMessages = new Array();
-								var alreadyFind = false;
-								
-								// On récupère tous les messages
-								$data.find('.messagetable').each(function(index) {
-									var $messageTable = $(this);
-									var $idMessageTable = $messageTable.find('.message a:first').attr('name');
-									if ($idMessageTable == $lastMessageId || alreadyFind == true) {
-										alreadyFind = true;
-										if ($idMessageTable != $lastMessageId) {
-											newMessages.push($messageTable);
-										}
+							// Nettoyage du titre de l'onglet
+							if (document.title.indexOf('(') == 0) {
+								document.title = document.title.substring(document.title.indexOf(')') + 2);
+							}
+							
+							// Check des messages
+							if ($data.find('.message:last a:first').attr('name') != $lastMessageId) {
+								var $toto = $data.find('[name=' + $lastMessageId + ']').parents('.messagetable');
+
+								// Un ou plusieurs nouveaux posts
+								countNewPosts = $toto.nextAll('.messagetable').length;
+								document.title = '(' + countNewPosts + ') ' + document.title;
+							}
+							
+							// Check des pages
+							var $spanData = $data.find('.cFondu:first');
+							if ($spanData.length == 0 || $spanData.text().toLowerCase() != 'page suivante') {
+								// Une nouvelle page
+								hasNewPage = true;
+							}
+							
+							// Gestion des cas
+							// Nettoyage
+							$('#openNewPosts').remove();
+							
+							// Injection
+							if (countNewPosts > 0) {
+								// On ajoute un encart en bas avec le libellé 'Afficher n nouveaux messages'
+								var hasMore = countNewPosts > 1;
+								var message = 'Afficher ' + countNewPosts + ' nouveau' + (hasMore ? 'x' : '') + ' message' + (hasMore ? 's' : '');	
+
+								// On injecte l'encart							
+								$('.zero').before('<p id="openNewPosts" style="border-top: 6px solid #1E4786; margin: 0;"><a href="#" style="display: block; border: 1px solid #2B68A9; color: #2B68A9; background-color: #ebebeb; margin: 5px; box-sizing: border-box; padding: 2px 2px;">' + message + '</a></p>');
+								$('#openNewPosts a').on("click", function(linkEvent) {
+									// Nettoyage du titre de l'onglet
+									if (document.title.indexOf('(') == 0) {
+										document.title = document.title.substring(document.title.indexOf(')') + 2);
 									}
-								});
-							
-								// On les injecte à la suite du topic
-								$('#openNewPosts').replaceWith(newMessages);
+								
+									var newMessages = new Array();
+									var alreadyFind = false;
+									
+									// On récupère tous les messages
+									$data.find('.messagetable').each(function(index) {
+										var $messageTable = $(this);
+										var $idMessageTable = $messageTable.find('.message a:first').attr('name');
+										if ($idMessageTable == $lastMessageId || alreadyFind == true) {
+											alreadyFind = true;
+											if ($idMessageTable != $lastMessageId) {
+												newMessages.push($messageTable);
+											}
+										}
+									});
+								
+									// On les injecte à la suite du topic
+									$('#openNewPosts').replaceWith(newMessages);
 
-								// Le dernier message a changé, on remplace son id
-								$lastMessageId = $('.message:last a:first').attr('name');
-								
-								return false;
-							});
-												
-							if (hasNewPage == true) {
-								// On active le lien Page Suivante
-							}
-						} else {
-							if (hasNewPage == true) { // On active le lien Page Suivante (si il y en a un) et on ajoute un encart en bas avec le libellé 'Afficher les nouveaux messages' avec le même lien que Page Suivante
-								// On récupère le lien de la page suivante
-								$aPageSuivante = $data.find('.pagepresuiv:first a');
-								if ($aPageSuivante.length > 0) {
-									var message = 'Afficher les nouveaux messages (page suivante)';
-									var href = $aPageSuivante.attr('href');
-								
-									// On injecte l'encart
-									$('.zero').before('<p id="openNewPosts" style="border-top: 6px solid #1E4786; margin: 0;"><a href="' + href + '" style="display: block; border: 1px solid #2B68A9; color: #2B68A9; background-color: #ebebeb; margin: 5px; box-sizing: border-box; padding: 2px 2px;">' + message + '</a></p>');
+									// Le dernier message a changé, on remplace son id
+									$lastMessageId = $('.message:last a:first').attr('name');
+									
+									return false;
+								});
+													
+								if (hasNewPage == true) {
+									// On active le lien Page Suivante
+								}
+							} else {
+								if (hasNewPage == true) { // On active le lien Page Suivante (si il y en a un) et on ajoute un encart en bas avec le libellé 'Afficher les nouveaux messages' avec le même lien que Page Suivante
+									// On récupère le lien de la page suivante
+									$aPageSuivante = $data.find('.pagepresuiv:first a');
+									if ($aPageSuivante.length > 0) {
+										var message = 'Afficher les nouveaux messages (page suivante)';
+										var href = $aPageSuivante.attr('href');
+									
+										// On injecte l'encart
+										$('.zero').before('<p id="openNewPosts" style="border-top: 6px solid #1E4786; margin: 0;"><a href="' + href + '" style="display: block; border: 1px solid #2B68A9; color: #2B68A9; background-color: #ebebeb; margin: 5px; box-sizing: border-box; padding: 2px 2px;">' + message + '</a></p>');
+									}
 								}
 							}
+						},
+						failure: function (data) {
+							
+						},
+						error: function (data) {
+							
 						}
-					},
-					failure: function (data) {
-						
-					},
-					error: function (data) {
-						
-					}
-				});
-			}, 120000);
+					});
+				}, interval);
+			}
 		}
 	}
 	

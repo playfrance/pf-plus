@@ -131,5 +131,42 @@
 		<key>Type</key>
 		<string>CheckBox</string>
 	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>displayMyPosts</string>
+		<key>Title</key>
+		<string>Mettre en évidence mes posts et les réponses à mes posts</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>refreshAutoTopic</string>
+		<key>Title</key>
+		<string>Rafraichir automatiquement les pages pour détecter les nouveaux posts</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<real>120</real>
+		<key>Key</key>
+		<string>selectedIntervalRefreshAutoTopic</string>
+		<key>Title</key>
+		<string>Intervalle entre chaque rafraichissement (en secondes)</string>
+		<key>Type</key>
+		<string>ListBox</string>
+		<key>Values</key>
+		<array>
+			<real>60</real>
+			<real>120</real>
+			<real>240</real>
+			<real>540</real>
+		</array>
+	</dict>
 </array>
 </plist>

@@ -95,6 +95,9 @@ function getStorage(msgEvent) {
 			"displayTwitter": safari.extension.settings.getItem('displayTwitter'),
 			"lazyLoadingOnImg": safari.extension.settings.getItem('lazyLoadingOnImg'),
 			"betterqQuickResponse": safari.extension.settings.getItem('betterqQuickResponse'),
+			"displayMyPosts": safari.extension.settings.getItem('displayMyPosts'),
+			"refreshAutoTopic": safari.extension.settings.getItem('refreshAutoTopic'),
+			"selectedIntervalRefreshAutoTopic": safari.extension.settings.getItem('selectedIntervalRefreshAutoTopic'),
 			
 			// Styles par constructeur
 			"themes": {

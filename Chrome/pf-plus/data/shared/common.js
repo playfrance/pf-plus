@@ -1,4 +1,32 @@
 function applyPfPlus(values) {
+	displayNewLogo(values);
+	
+	displayUniqueTheme(values);
+
+	removeSignatures(values);
+	
+	fixMaxWidthImg(values);
+	
+	addTopButtons(values);
+	
+	fastQuote(values);
+	
+	displayMyPosts(values);
+	
+	refreshAutoTopic(values);
+	
+	displayYoutube(values);
+		
+	displayDailymotion(values);
+	
+	displayTwitter(values);
+	
+	lazyLoadingOnImg(values);
+	
+	betterqQuickResponse(values);
+}
+
+function displayNewLogo(values) {
 	// Changement du logo
 	if (values.displayNewLogo) {
 		$('a.logo').css({
@@ -7,7 +35,9 @@ function applyPfPlus(values) {
 			"left": "10px"
 		});
 	}
-	
+}
+
+function displayUniqueTheme(values) {
 	// Changement du thème
 	if (values.displayUniqueTheme) {
 		var $link1 = $('<link type="text/css" rel="stylesheet" href="' + values.themes[values.selectedUniqueTheme].style + '" />');
@@ -16,12 +46,16 @@ function applyPfPlus(values) {
 		$(document.head).append($link1).append($link2).append($link3);
 		$(".bg-holder").css("background", "").attr("class", "level-1");
 	}
+}
 
+function removeSignatures(values) {
 	// Désactivation des signatures
 	if (values.removeSignatures) {
 		$(".signature").remove();
 	}
-	
+}
+
+function fixMaxWidthImg(values) {
 	// Redimensionnement des images
 	if (values.fixMaxWidthImg) {
 		$(".messagetable").css({
@@ -34,18 +68,25 @@ function applyPfPlus(values) {
 			"height": "auto"
 		});
 	}
-	
+}
+
+function addTopButtons(values) {
 	// Ajout du bouton Haut de page
 	if (values.addTopButtons) {
-		$(".messCase2 .toolbar").each(function(index) {
+		$('.messCase2 .toolbar').each(function(index) {
 			var $this = $(this).css({
 				"overflow": "hidden"
 			});
-			$this.append('<div class="right"><a href="#haut" style="color:rgb(43, 104, 169); font-weight: bold;">Haut de page</a></div>');
-			$this.children(".spacer").remove();
+			
+			if ($this.find('.pf-plus-top-button').length == 0) {
+				$this.append('<div class="pf-plus-top-button right"><a href="#haut" style="color:rgb(43, 104, 169); font-weight: bold;">Haut de page</a></div>');
+				$this.children('.spacer').remove();
+			}
 		});
 	}
-	
+}
+
+function fastQuote(values) {
 	// Ajout du clic droit pour quoter un message
 	if (values.fastQuote /* || Autres contextMenu */) {
 		// Code générique ContextMenu
@@ -137,29 +178,41 @@ function applyPfPlus(values) {
 			}
 		}
 	}
-	
+}
+
+function displayMyPosts(values) {
 	// Mise en évidence de ses posts
 	if (values.displayMyPosts) {
+		var pseudo = $('#login_area strong').text().replace('Bienvenue ', '');
+	
 		$('.msg-pseudo a').each(function(index) {
 			var $div = $(this);
-			var pseudo = $('#login_area strong').text().replace('Bienvenue ', '');
-			
+
 			if ($div.text() == pseudo) {
-				$div.parents('.message').removeClass('cBackCouleurTab1 cBackCouleurTab2 cBackCouleurTabModo').addClass('pf-plus-cBackCouleurTabMy');
+				var $parents = $div.parents('.message');
+				
+				if (!$parents.hasClass('pf-plus-cBackCouleurTabMy')) {
+					$parents.removeClass('cBackCouleurTab1 cBackCouleurTab2 cBackCouleurTabModo').addClass('pf-plus-cBackCouleurTabMy');
+				}
 			}
 		});
 		
 		// Mise en évidence des réponses à ses posts
 		$('.citation a').each(function(index) {
 			var $a = $(this);
-			var pseudo = $('#login_area strong').text().replace('Bienvenue ', '');
 			
 			if ($a.text().replace(' a écrit :', '') == pseudo) {
-				$a.parents('.messCase2').find('.toolbar').after('<div class="pf-plus-pseudoinpost">Votre pseudo appara&icirc;t dans ce message</div>');
+				var $parents = $a.parents('.messCase2');
+				
+				if ($parents.find('.pf-plus-pseudoinpost').length == 0) {
+					$parents.find('.toolbar').after('<div class="pf-plus-pseudoinpost">Votre pseudo appara&icirc;t dans ce message</div>');
+				}
 			}
 		});
 	}
-	
+}
+
+function refreshAutoTopic(values) {
 	// Rechargement dynamique des posts
 	if (values.refreshAutoTopic) {
 		if ($('.reponserapide').length > 0) {
@@ -239,6 +292,16 @@ function applyPfPlus(values) {
 								
 									// On les injecte à la suite du topic
 									$('#openNewPosts').replaceWith(newMessages);
+									
+									// On relance certains processus de PF+ pour les nouveaux posts
+									removeSignatures(values);
+									fixMaxWidthImg(values);					
+									addTopButtons(values);
+									displayMyPosts(values);
+									displayYoutube(values);
+									displayDailymotion(values);
+									displayTwitter(values);
+									lazyLoadingOnImg(values);
 
 									// Le dernier message a changé, on remplace son id
 									$lastMessageId = $('.message:last a:first').attr('name');
@@ -274,7 +337,9 @@ function applyPfPlus(values) {
 			}
 		}
 	}
-	
+}
+
+function displayYoutube(values) {
 	// Chargement des vidéos
 	// Youtube
 	if (values.displayYoutube) {
@@ -296,7 +361,9 @@ function applyPfPlus(values) {
 		
 		$('.lazyYT').lazyYT();
 	}
-		
+}
+
+function displayDailymotion(values) {
 	// Dailymotion
 	if (values.displayDailymotion) {
 		$("a[href*='dai.ly'], a[href*='dailymotion.com/video/']").each(function(index) {
@@ -310,7 +377,9 @@ function applyPfPlus(values) {
 			}
 		});
 	}
-	
+}
+
+function displayTwitter(values) {
 	// Chargement des tweets
 	if (values.displayTwitter) {
 		$("a[href*='twitter.com']").each(function( listIndex ) {
@@ -342,13 +411,18 @@ function applyPfPlus(values) {
 			}
 		});
 	}
-	
+}
+
+function lazyLoadingOnImg(values) {
 	// Chargement des images
 	if (values.lazyLoadingOnImg) {
 		$("img:not(img[src^='/static/'])").each(function(index) {
 			var $img = $(this);
-			var src = $img.attr('src');
-			$img.attr("class", "lazy").attr("data-original", src).attr("src", values.sharedPath + "img/spacer.gif");
+			
+			if (!$img.hasClass('lazy')) {
+				var src = $img.attr('src');
+				$img.attr("class", "lazy").attr("data-original", src).attr("src", values.sharedPath + "img/spacer.gif");
+			}
 		});
 		
 		$(".lazy").lazyload({
@@ -356,7 +430,9 @@ function applyPfPlus(values) {
 			effect: "fadeIn"
 		});
 	}
-	
+}
+
+function betterqQuickResponse(values) {
 	if (values.betterqQuickResponse && $('.reponserapide').length > 0) {
 		// Récupération du code de l'utilisateur
 		var $inputHidden = $('input[name="hash_check"]:first');

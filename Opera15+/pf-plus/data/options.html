@@ -23,7 +23,16 @@
 			<input type="checkbox" name="displayDailymotion"><label for="displayDailymotion">Afficher les vid&eacute;os Dailymotion</label><br />
 			<input type="checkbox" name="displayTwitter"><label for="displayTwitter">Afficher les Tweet</label><br />
 			<input type="checkbox" name="lazyLoadingOnImg"><label for="lazyLoadingOnImg">Activer le lazy loading</label><br />
-			<input type="checkbox" name="betterqQuickResponse"><label for="betterqQuickResponse">Am&eacute;liorer la r&eacute;ponse rapide</label>
+			<input type="checkbox" name="betterqQuickResponse"><label for="betterqQuickResponse">Am&eacute;liorer la r&eacute;ponse rapide</label><br />
+			<input type="checkbox" name="displayMyPosts"><label for="displayMyPosts">Mettre en &eacute;vidence mes posts et les r&eacute;ponses &agrave; mes posts</label><br />
+			<input type="checkbox" name="refreshAutoTopic"><label for="refreshAutoTopic">Rafraichir automatiquement les pages pour d&eacute;tecter les nouveaux posts</label><br />
+			<select name="selectedIntervalRefreshAutoTopic">
+				<option value="60">1</option>
+				<option value="120" selected="selected">2</option>
+				<option value="240">4</option>
+				<option value="540">10</option>
+			</select>
+			<label for="selectedIntervalRefreshAutoTopic"> minute(s) entre chaque rafraichissement des pages (2 minutes par d&eacute;faut)</label>
 		</div>
 		
 		<div id="status"></div>

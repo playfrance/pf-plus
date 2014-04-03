@@ -1,4 +1,32 @@
 function applyPfPlus(values) {
+	displayNewLogo(values);
+	
+	displayUniqueTheme(values);
+
+	removeSignatures(values);
+	
+	fixMaxWidthImg(values);
+	
+	addTopButtons(values);
+	
+	fastQuote(values);
+	
+	displayMyPosts(values);
+	
+	refreshAutoTopic(values);
+	
+	displayYoutube(values);
+		
+	displayDailymotion(values);
+	
+	displayTwitter(values);
+	
+	lazyLoadingOnImg(values);
+	
+	betterqQuickResponse(values);
+}
+
+function displayNewLogo(values) {
 	// Changement du logo
 	if (values.displayNewLogo) {
 		$('a.logo').css({
@@ -7,7 +35,9 @@ function applyPfPlus(values) {
 			"left": "10px"
 		});
 	}
-	
+}
+
+function displayUniqueTheme(values) {
 	// Changement du thème
 	if (values.displayUniqueTheme) {
 		var $link1 = $('<link type="text/css" rel="stylesheet" href="' + values.themes[values.selectedUniqueTheme].style + '" />');
@@ -16,12 +46,16 @@ function applyPfPlus(values) {
 		$(document.head).append($link1).append($link2).append($link3);
 		$(".bg-holder").css("background", "").attr("class", "level-1");
 	}
+}
 
+function removeSignatures(values) {
 	// Désactivation des signatures
 	if (values.removeSignatures) {
 		$(".signature").remove();
 	}
-	
+}
+
+function fixMaxWidthImg(values) {
 	// Redimensionnement des images
 	if (values.fixMaxWidthImg) {
 		$(".messagetable").css({
@@ -34,18 +68,25 @@ function applyPfPlus(values) {
 			"height": "auto"
 		});
 	}
-	
+}
+
+function addTopButtons(values) {
 	// Ajout du bouton Haut de page
 	if (values.addTopButtons) {
-		$(".messCase2 .toolbar").each(function(index) {
+		$('.messCase2 .toolbar').each(function(index) {
 			var $this = $(this).css({
 				"overflow": "hidden"
 			});
-			$this.append('<div class="right"><a href="#haut" style="color:rgb(43, 104, 169); font-weight: bold;">Haut de page</a></div>');
-			$this.children(".spacer").remove();
+			
+			if ($this.find('.pf-plus-top-button').length == 0) {
+				$this.append('<div class="pf-plus-top-button right"><a href="#haut" style="color:rgb(43, 104, 169); font-weight: bold;">Haut de page</a></div>');
+				$this.children('.spacer').remove();
+			}
 		});
 	}
-	
+}
+
+function fastQuote(values) {
 	// Ajout du clic droit pour quoter un message
 	if (values.fastQuote /* || Autres contextMenu */) {
 		// Code générique ContextMenu
@@ -137,7 +178,168 @@ function applyPfPlus(values) {
 			}
 		}
 	}
+}
+
+function displayMyPosts(values) {
+	// Mise en évidence de ses posts
+	if (values.displayMyPosts) {
+		var pseudo = $('#login_area strong').text().replace('Bienvenue ', '');
 	
+		$('.msg-pseudo a').each(function(index) {
+			var $div = $(this);
+
+			if ($div.text() == pseudo) {
+				var $parents = $div.parents('.message');
+				
+				if (!$parents.hasClass('pf-plus-cBackCouleurTabMy')) {
+					$parents.removeClass('cBackCouleurTab1 cBackCouleurTab2 cBackCouleurTabModo').addClass('pf-plus-cBackCouleurTabMy');
+				}
+			}
+		});
+		
+		// Mise en évidence des réponses à ses posts
+		$('.citation a').each(function(index) {
+			var $a = $(this);
+			
+			if ($a.text().replace(' a écrit :', '') == pseudo) {
+				var $parents = $a.parents('.messCase2');
+				
+				if ($parents.find('.pf-plus-pseudoinpost').length == 0) {
+					$parents.find('.toolbar').after('<div class="pf-plus-pseudoinpost">Votre pseudo appara&icirc;t dans ce message</div>');
+				}
+			}
+		});
+	}
+}
+
+function refreshAutoTopic(values) {
+	// Rechargement dynamique des posts
+	if (values.refreshAutoTopic) {
+		if ($('.reponserapide').length > 0) {
+			var $span = $('.cFondu:first');
+			var $pagepresuiv = $('.pagepresuiv:first');
+
+			if (($span.length > 0 && $span.text().toLowerCase() == 'page suivante') || $pagepresuiv.length == 0) {
+				// On récupère l'identifiant du dernier post de la page
+				var $lastMessageId = $('.message:last a:first').attr('name');
+				
+				var interval = parseInt(values.selectedIntervalRefreshAutoTopic == null ? '120' : values.selectedIntervalRefreshAutoTopic) * 1000;
+				
+				setInterval(function() {
+					$.ajax({
+						type: "GET",
+						url: document.location,
+						contentType: "text/html; charset=utf-8",
+						dataType: "html",
+						success: function (data, status) {
+							var $data = $(data);
+							var countNewPosts = 0;
+							var hasNewPage = false;
+							
+							// Nettoyage du titre de l'onglet
+							if (document.title.indexOf('(') == 0) {
+								document.title = document.title.substring(document.title.indexOf(')') + 2);
+							}
+							
+							// Check des messages
+							if ($data.find('.message:last a:first').attr('name') != $lastMessageId) {
+								var $toto = $data.find('[name=' + $lastMessageId + ']').parents('.messagetable');
+
+								// Un ou plusieurs nouveaux posts
+								countNewPosts = $toto.nextAll('.messagetable').length;
+								document.title = '(' + countNewPosts + ') ' + document.title;
+							}
+							
+							// Check des pages
+							var $spanData = $data.find('.cFondu:first');
+							if ($spanData.length == 0 || $spanData.text().toLowerCase() != 'page suivante') {
+								// Une nouvelle page
+								hasNewPage = true;
+							}
+							
+							// Gestion des cas
+							// Nettoyage
+							$('#openNewPosts').remove();
+							
+							// Injection
+							if (countNewPosts > 0) {
+								// On ajoute un encart en bas avec le libellé 'Afficher n nouveaux messages'
+								var hasMore = countNewPosts > 1;
+								var message = 'Afficher ' + countNewPosts + ' nouveau' + (hasMore ? 'x' : '') + ' message' + (hasMore ? 's' : '');	
+
+								// On injecte l'encart							
+								$('.zero').before('<p id="openNewPosts" style="border-top: 6px solid #1E4786; margin: 0;"><a href="#" style="display: block; border: 1px solid #2B68A9; color: #2B68A9; background-color: #ebebeb; margin: 5px; box-sizing: border-box; padding: 2px 2px;">' + message + '</a></p>');
+								$('#openNewPosts a').on("click", function(linkEvent) {
+									// Nettoyage du titre de l'onglet
+									if (document.title.indexOf('(') == 0) {
+										document.title = document.title.substring(document.title.indexOf(')') + 2);
+									}
+								
+									var newMessages = new Array();
+									var alreadyFind = false;
+									
+									// On récupère tous les messages
+									$data.find('.messagetable').each(function(index) {
+										var $messageTable = $(this);
+										var $idMessageTable = $messageTable.find('.message a:first').attr('name');
+										if ($idMessageTable == $lastMessageId || alreadyFind == true) {
+											alreadyFind = true;
+											if ($idMessageTable != $lastMessageId) {
+												newMessages.push($messageTable);
+											}
+										}
+									});
+								
+									// On les injecte à la suite du topic
+									$('#openNewPosts').replaceWith(newMessages);
+									
+									// On relance certains processus de PF+ pour les nouveaux posts
+									removeSignatures(values);
+									fixMaxWidthImg(values);					
+									addTopButtons(values);
+									displayMyPosts(values);
+									displayYoutube(values);
+									displayDailymotion(values);
+									displayTwitter(values);
+									lazyLoadingOnImg(values);
+
+									// Le dernier message a changé, on remplace son id
+									$lastMessageId = $('.message:last a:first').attr('name');
+									
+									return false;
+								});
+													
+								if (hasNewPage == true) {
+									// On active le lien Page Suivante
+								}
+							} else {
+								if (hasNewPage == true) { // On active le lien Page Suivante (si il y en a un) et on ajoute un encart en bas avec le libellé 'Afficher les nouveaux messages' avec le même lien que Page Suivante
+									// On récupère le lien de la page suivante
+									$aPageSuivante = $data.find('.pagepresuiv:first a');
+									if ($aPageSuivante.length > 0) {
+										var message = 'Afficher les nouveaux messages (page suivante)';
+										var href = $aPageSuivante.attr('href');
+									
+										// On injecte l'encart
+										$('.zero').before('<p id="openNewPosts" style="border-top: 6px solid #1E4786; margin: 0;"><a href="' + href + '" style="display: block; border: 1px solid #2B68A9; color: #2B68A9; background-color: #ebebeb; margin: 5px; box-sizing: border-box; padding: 2px 2px;">' + message + '</a></p>');
+									}
+								}
+							}
+						},
+						failure: function (data) {
+							
+						},
+						error: function (data) {
+							
+						}
+					});
+				}, interval);
+			}
+		}
+	}
+}
+
+function displayYoutube(values) {
 	// Chargement des vidéos
 	// Youtube
 	if (values.displayYoutube) {
@@ -159,7 +361,9 @@ function applyPfPlus(values) {
 		
 		$('.lazyYT').lazyYT();
 	}
-		
+}
+
+function displayDailymotion(values) {
 	// Dailymotion
 	if (values.displayDailymotion) {
 		$("a[href*='dai.ly'], a[href*='dailymotion.com/video/']").each(function(index) {
@@ -173,7 +377,9 @@ function applyPfPlus(values) {
 			}
 		});
 	}
-	
+}
+
+function displayTwitter(values) {
 	// Chargement des tweets
 	if (values.displayTwitter) {
 		$("a[href*='twitter.com']").each(function( listIndex ) {
@@ -205,13 +411,18 @@ function applyPfPlus(values) {
 			}
 		});
 	}
-	
+}
+
+function lazyLoadingOnImg(values) {
 	// Chargement des images
 	if (values.lazyLoadingOnImg) {
 		$("img:not(img[src^='/static/'])").each(function(index) {
 			var $img = $(this);
-			var src = $img.attr('src');
-			$img.attr("class", "lazy").attr("data-original", src).attr("src", values.sharedPath + "img/spacer.gif");
+			
+			if (!$img.hasClass('lazy')) {
+				var src = $img.attr('src');
+				$img.attr("class", "lazy").attr("data-original", src).attr("src", values.sharedPath + "img/spacer.gif");
+			}
 		});
 		
 		$(".lazy").lazyload({
@@ -219,7 +430,9 @@ function applyPfPlus(values) {
 			effect: "fadeIn"
 		});
 	}
-	
+}
+
+function betterqQuickResponse(values) {
 	if (values.betterqQuickResponse && $('.reponserapide').length > 0) {
 		// Récupération du code de l'utilisateur
 		var $inputHidden = $('input[name="hash_check"]:first');

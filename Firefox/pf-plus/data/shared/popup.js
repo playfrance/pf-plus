@@ -2,6 +2,9 @@
 /* Base */
 /********/
 $(document).ready(function() {
+	$('#openMP a').on('click', function () {
+		newTab(getCommons().site.getMpsUrl());
+	});
 	$('#openAll a').on('click', function () {
 		openAll();
 	});
@@ -23,7 +26,9 @@ $(document).ready(function() {
 /*************/
 function setContent() {
 	getCommons().refresh(
-		function(categories, countTopics, isConnected) {
+		function(categories, countTopics, countMps, isConnected) {
+			$('#openMP').hide();
+		
 			if (isConnected) {
 				$('#openAll').show();
 				$('#connected').show();
@@ -32,6 +37,12 @@ function setContent() {
 				// Génération du contenu
 				var $contentFavs = $('#contentFavs');
 				$contentFavs.html('');
+				
+				if(countMps > 0) {
+					var hasMore = countMps > 1;
+					$('#openMP a').html('Vous avez ' + countMps + ' nouveau' + (hasMore ? 'x' : '') + ' message' + (hasMore ? 's' : ''));
+					$('#openMP').show();
+				}
 				
 				if(countTopics == 0) {
 					$contentFavs.append('<p>Pas de favoris</p>');

@@ -6,7 +6,7 @@
 	"author": "PF Plus Team",
 	"contributors": ["Steven_PF", "UniT_I_ReSpAwN"],
 	"license": "MPL 2.0",
-	"version": "0.5.0",
+	"version": "0.9.4",
 	"icon": "data\\shared\\img\\icon48.png",
 	"icon64": "data\\shared\\img\\icon64.png",
 	"preferences": [
@@ -99,6 +99,42 @@
 			"title": "Améliorer la réponse rapide",
 			"type": "bool",
 			"value": true
+		},
+		{
+			"name": "displayMyPosts",
+			"title": "Mettre en évidence mes posts et les réponses à mes posts",
+			"type": "bool",
+			"value": true
+		},
+		{
+			"name": "refreshAutoTopic",
+			"title": "Rafraichir automatiquement les pages pour détecter les nouveaux posts",
+			"type": "bool",
+			"value": true
+		},
+		{
+			"name": "selectedIntervalRefreshAutoTopic",
+			"title": "Intervalle de temps entre chaque rafraichissement (en minutes)",
+			"type": "menulist",
+			"value": "120",
+			"options": [
+				{
+					"value": "60",
+					"label": "1"
+				},
+				{
+					"value": "120",
+					"label": "2"
+				},
+				{
+					"value": "240",
+					"label": "4"
+				},
+				{
+					"value": "540",
+					"label": "10"
+				}
+			]
 		}
 	]
 }

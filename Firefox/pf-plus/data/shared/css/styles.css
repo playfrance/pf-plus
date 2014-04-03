@@ -38,3 +38,15 @@
 	height: 200px;
 	min-height: 200px;
 }
+.pf-plus-cBackCouleurTabMy {
+	background-color: #7E99AC;
+}
+.pf-plus-pseudoinpost {
+	color: #cccccc;
+	border: 1px solid #cccccc;
+	font-size: 11px;
+	text-align: center;
+	padding: 5px;
+	background-color: #7E99AC;
+	margin-bottom: 3px;
+}

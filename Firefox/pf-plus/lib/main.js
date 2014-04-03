@@ -46,6 +46,9 @@ pageMod.PageMod({
 				"displayTwitter": simplePrefs.prefs.displayTwitter,
 				"lazyLoadingOnImg": simplePrefs.prefs.lazyLoadingOnImg,
 				"betterqQuickResponse": simplePrefs.prefs.betterqQuickResponse,
+				"displayMyPosts": simplePrefs.prefs.displayMyPosts,
+				"refreshAutoTopic": simplePrefs.prefs.refreshAutoTopic,
+				"selectedIntervalRefreshAutoTopic": simplePrefs.prefs.selectedIntervalRefreshAutoTopic,
 				
 				// Styles par constructeur
 				"themes": {

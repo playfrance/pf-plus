@@ -168,5 +168,15 @@
 			<real>540</real>
 		</array>
 	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>reduceCitation</string>
+		<key>Title</key>
+		<string>Masquer les grandes citations (+ de 1000px de haut) par défaut</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
 </array>
 </plist>

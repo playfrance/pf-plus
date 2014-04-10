@@ -98,6 +98,7 @@ function getStorage(msgEvent) {
 			"displayMyPosts": safari.extension.settings.getItem('displayMyPosts'),
 			"refreshAutoTopic": safari.extension.settings.getItem('refreshAutoTopic'),
 			"selectedIntervalRefreshAutoTopic": safari.extension.settings.getItem('selectedIntervalRefreshAutoTopic'),
+			"reduceCitation" : safari.extension.settings.getItem('reduceCitation'),
 			
 			// Styles par constructeur
 			"themes": {

@@ -116,6 +116,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 				"displayMyPosts": localStorage.getItem('displayMyPosts') === "true" ? true : false,
 				"refreshAutoTopic": localStorage.getItem('refreshAutoTopic') === "true" ? true : false,
 				"selectedIntervalRefreshAutoTopic": localStorage.getItem('selectedIntervalRefreshAutoTopic') === 'null' ? null : localStorage.getItem('selectedIntervalRefreshAutoTopic'),
+				"reduceCitation" : localStorage.getItem('reduceCitation') === "true" ? true : false,
 				
 				// Styles par constructeur
 				"themes": {

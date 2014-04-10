@@ -49,6 +49,7 @@ pageMod.PageMod({
 				"displayMyPosts": simplePrefs.prefs.displayMyPosts,
 				"refreshAutoTopic": simplePrefs.prefs.refreshAutoTopic,
 				"selectedIntervalRefreshAutoTopic": simplePrefs.prefs.selectedIntervalRefreshAutoTopic,
+				"reduceCitation": simplePrefs.prefs.reduceCitation,
 				
 				// Styles par constructeur
 				"themes": {

@@ -6,7 +6,7 @@
 	"author": "PF Plus Team",
 	"contributors": ["Steven_PF", "UniT_I_ReSpAwN"],
 	"license": "MPL 2.0",
-	"version": "0.9.4",
+	"version": "0.9.6",
 	"icon": "data\\shared\\img\\icon48.png",
 	"icon64": "data\\shared\\img\\icon64.png",
 	"preferences": [
@@ -135,6 +135,12 @@
 					"label": "10"
 				}
 			]
+		},
+		{
+			"name": "reduceCitation",
+			"title": "Masquer les grandes citations (+ de 1000px de haut) par défaut",
+			"type": "bool",
+			"value": true
 		}
 	]
 }

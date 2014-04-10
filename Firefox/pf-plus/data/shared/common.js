@@ -24,6 +24,8 @@ function applyPfPlus(values) {
 	lazyLoadingOnImg(values);
 	
 	betterqQuickResponse(values);
+	
+	reduceCitation(values);
 }
 
 function displayNewLogo(values) {
@@ -302,6 +304,7 @@ function refreshAutoTopic(values) {
 									displayDailymotion(values);
 									displayTwitter(values);
 									lazyLoadingOnImg(values);
+									reduceCitation(values);
 
 									// Le dernier message a changé, on remplace son id
 									$lastMessageId = $('.message:last a:first').attr('name');
@@ -493,5 +496,49 @@ function betterqQuickResponse(values) {
 											'<input type="hidden" name="config" value="pf.inc">'+
 										'</form>');
 		}
+	}
+}
+
+function reduceCitation(values) {
+	if (values.reduceCitation) {
+		$('.citation td:not(.pf-plus-reduceCitation)').each(function(index) {
+			var $this = $(this);
+			$this.addClass('pf-plus-reduceCitation');
+
+			if ($this.height() > 1000) {
+				// On recup l'élement avec la classe s1
+				var $s1 = $this.children('.s1').detach();
+				var $content = $this.html();
+				$this.html('')
+				$this.append($s1);
+
+				// On injecte l'encart pour afficher la citation	
+				var $showCitation = $('<a href="#" style="/* display: block; border: 1px solid #2B68A9; color: #2B68A9; background-color: #ebebeb; margin: 5px; box-sizing: border-box; padding: 2px 2px; */ margin-left: 15px; color: #2B68A9;">Afficher la citation</a>');
+				$showCitation.on("click", function(linkEvent) {
+					$span.show();
+					$showCitation.hide();
+					$hideCitation.show();
+					return false;
+				});
+				
+				// On injecte l'encart pour masquer la citation
+				var $hideCitation = $('<a href="#" style="/* display: block; border: 1px solid #2B68A9; color: #2B68A9; background-color: #ebebeb; margin: 5px; box-sizing: border-box; padding: 2px 2px; */ margin-left: 15px; color: #2B68A9;">Masquer la citation</a>');
+				$hideCitation.on("click", function(linkEvent) {
+					$span.hide();
+					$hideCitation.hide();
+					$showCitation.show();
+					return false;
+				});
+				$hideCitation.hide();
+				
+				$this.append($showCitation);
+				$this.append($hideCitation);
+				
+				// On injecte la citation qui est masquée par défaut
+				var $span = $('<span style="display: none;"></span>');
+				$span.append($content);
+				$this.append($span);
+			}
+		});
 	}
 }
